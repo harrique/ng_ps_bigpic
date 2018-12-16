@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IProduct } from '../model/product';
 
 @Component({
   selector: 'pm-products',
@@ -7,15 +8,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductListComponent implements OnInit {
 
+  private _listFilter: string;
+
   pageTitle: string;
-  products: Array<any>;
-  imageWidth = 50;
-  imageMargin = 2;
-  showImage = false;
-  listFilter: string;
+  products: Array<IProduct>;
+  filteredProducts: Array<IProduct>;
+  showImage: boolean;
+
+  get listFilter(): string {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    this._listFilter = value;
+
+    this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
+  }
 
   constructor() {
     this.pageTitle = 'Product List';
+  }
+
+  performFilter(filterBy: string): IProduct[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.products.filter(
+      (product: IProduct) =>
+      product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1 );
   }
 
   ngOnInit() {
@@ -25,7 +43,7 @@ export class ProductListComponent implements OnInit {
         'productName': 'Leaf Rake',
         'productCode': 'GDN-0011',
         'releaseDate': 'March 19, 2016',
-        'description': 'Leaf rake with 48-inch wooden handle.',
+        'description': 'Leaf rake with 48-inch wooden handle',
         'price': 19.95,
         'starRating': 3.2,
         'imageUrl': 'https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png'
@@ -71,6 +89,9 @@ export class ProductListComponent implements OnInit {
         'imageUrl': 'https://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png'
       }
     ];
+
+    this.listFilter = '';
+    this.showImage = false;
   }
 
   toggleImage(): void {
