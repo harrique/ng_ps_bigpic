@@ -3,10 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductListComponent } from './product-list/product-list.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductDetailGuard } from './product-detail/product-detail.guard';
 
 const routes: Routes = [
   { path: 'products', component: ProductListComponent },
-  { path: 'product/:id', component: ProductDetailComponent },
+  { path: 'product/:id', canActivate: [ProductDetailGuard], component: ProductDetailComponent },
   { path: 'welcome', component: WelcomeComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
   { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
