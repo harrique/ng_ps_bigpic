@@ -13,5 +13,8 @@
             "pm",
             "kebab-case"
         ]
+    },
+    "compilerOptions": {
+        "experimentalDecorators": true
     }
 }
