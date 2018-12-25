@@ -5,13 +5,9 @@ import { ConvertToSpacesPipe } from './pipes/convert-to-spaces.pipe';
 import { StarComponent } from './shared/star/star.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
-import { ProductDetailGuard } from './product-detail/product-detail.guard';
+import { ProductRoutingModule } from './product-routing.module';
 
-const routes: Routes = [
-  { path: 'products', component: ProductListComponent },
-  { path: 'product/:id', canActivate: [ProductDetailGuard], component: ProductDetailComponent },
-];
+
 
 @NgModule({
   declarations: [
@@ -23,7 +19,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule.forChild(routes)
+    ProductRoutingModule
   ]
 })
 export class ProductModule { }
