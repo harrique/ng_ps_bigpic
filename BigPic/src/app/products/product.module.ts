@@ -6,20 +6,20 @@ import { StarComponent } from './shared/star/star.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { FormsModule } from '@angular/forms';
 import { ProductRoutingModule } from './product-routing.module';
-
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    ProductListComponent,
-    ProductDetailComponent,
     ConvertToSpacesPipe,
     StarComponent,
+    ProductListComponent,
+    ProductDetailComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    ProductRoutingModule
+    ProductRoutingModule,
+    HttpClientModule
   ]
 })
 export class ProductModule { }

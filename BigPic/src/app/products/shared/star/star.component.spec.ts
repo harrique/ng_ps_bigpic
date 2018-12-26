@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StarComponent } from './star-component.component';
+import { StarComponent } from './star.component';
 
 describe('StarComponentComponent', () => {
   let component: StarComponent;
